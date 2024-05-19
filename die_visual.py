@@ -3,13 +3,13 @@ from plotly.graph_objs import Bar, Layout
 from plotly import offline
 
 # die = Die()         # six sided die
-# create two dice now
+# create a D6 and a D10 dice
 die_1 = Die()
-die_2 = Die()
+die_2 = Die(10)
 # Make some roll no's and store results in a list.
 results = []
 
-for roll_num in range(1001):
+for roll_num in range(50000):
     result = die_1.roll() + die_2.roll()
     results.append(result)
 
@@ -28,7 +28,7 @@ x_values = list(range(2,max_result+1))       #Plotly doesn’t accept the result
 data = [Bar(x=x_values,y=frequencies)]
 x_axis_config = {'title':'Result', 'dtick':1}
 y_axis_config = {'title': 'Frequencies of Result'}
-my_layout = Layout(title='Results of rolling two D6 1000 times',xaxis=x_axis_config, yaxis=y_axis_config)
+my_layout = Layout(title='Results of rolling a D6 and D10 dice 1000 times',xaxis=x_axis_config, yaxis=y_axis_config)
 
-offline.plot({'data': data,'layout':my_layout}, filename='D6_D6.html')
+offline.plot({'data': data,'layout':my_layout}, filename='D6_D10.html')
 print(frequencies)
